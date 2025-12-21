@@ -1,0 +1,25 @@
+/* app/booking/booking.module.css */
+.booking {
+  background-color: #82ccdd;
+  justify-content: center;
+  align-items: center;
+  padding-left: 300px;
+  padding-top: 50px;
+}
+
+.time-btn {
+  margin: 5px;
+  padding: 8px 12px;
+  background-color: #e0e0e0;
+  border: 1px solid #888;
+  cursor: pointer;
+}
+
+.time-btn:hover {
+  background-color: #e74c3c;
+}
+
+.time-btn.active {
+  background-color: #e74c3c;
+  color: white;
+}
