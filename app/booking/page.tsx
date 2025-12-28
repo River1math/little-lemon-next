@@ -3,21 +3,9 @@
 
 import { useReducer, useState } from "react";
 import { useRouter } from "next/navigation";
-import styles from "./booking.module.css";
+//import styles from "./booking.module.css";
 import TimeSlotList from "../components/TimeSlotList";
 import { initializeTimes, updateTimes } from "../lib/timesReducer";
-
-
-// 你原来从 ../state/timesReducer 引入，这里我先写 TS 类型占位
-// type TimesAction = { type: "setDate"; payload: Date };
-// type TimesReducer = (state: string[], action: TimesAction) => string[];
-
-// TODO：把你原来的 initializeTimes/updateTimes 迁过来并加类型
-// const initializeTimes = (): string[] => ["17:00", "18:00", "19:00", "20:00"];
-// const updateTimes: TimesReducer = (state, action) => {
-//   if (action.type === "setDate") return state; // 这里按你原逻辑替换
-//   return state;
-// };
 
 export default function BookingPage() {
   const router = useRouter();
@@ -48,30 +36,56 @@ export default function BookingPage() {
     router.push(`/reservation?${qs.toString()}`);
   };
 
-  return (
-    <section className={styles.booking}>
-      <label>
-        Date
-        <input type="date" value={date} onChange={onDateChange} />
-      </label>
+return (
+    <section className="min-h-[70vh] px-4 flex items-center justify-center">
 
-      <label>
-        Guests
-        <input
-          type="number"
-          min={1}
-          max={10}
-          value={guests}
-          onChange={(e) => setGuests(Number(e.target.value))}
-        />
-      </label>
+      <div className="w-full max-w-2xl rounded-xl border border-black/40 bg-sky-200 p-6 md:p-10">
+     
+        <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-6 justify-center">
+          <label className="flex items-center gap-2 border border-black/40 bg-amber-200 px-3 py-2 w-full md:w-auto justify-between">
+            <span className="font-medium">Date</span>
+            <input
+              className="bg-transparent outline-none"
+              type="date"
+              value={date}
+              onChange={onDateChange}
+            />
+          </label>
 
-      <h3>Time</h3>
-      <TimeSlotList times={availableTimes} value={time} onChange={setTime} />
+          <label className="flex items-center gap-2 border border-black/40 bg-amber-200 px-3 py-2 w-full md:w-auto justify-between">
+            <span className="font-medium">Guests</span>
+            <input
+              className="bg-transparent outline-none w-20 text-center"
+              type="number"
+              min={1}
+              max={10}
+              value={guests}
+              onChange={(e) => setGuests(Number(e.target.value))}
+            />
+          </label>
+        </div>
 
-      <div className="flex items-center p-4">
-        <button className="border border-black-300 px-4 py-0 rounded-full hover:bg-gray-100 transition" onClick={() => router.back()}>Cancel</button>
-        <button className="ml-5 border px-6 py-0 rounded-full hover:bg-gray-100 transition" onClick={onNext}>Next</button>
+        <h3 className="font-bold text-lg mt-6 mb-3 text-center md:text-left">
+          Time
+        </h3>
+
+        <TimeSlotList times={availableTimes} value={time} onChange={setTime} />
+    
+        <div className="mt-8 flex items-center justify-center gap-6 flex-wrap">
+          <button
+            className="border border-black/40 px-6 py-1 rounded-full bg-gray-200 hover:bg-gray-300 transition"
+            onClick={() => router.back()}
+          >
+            Cancel
+          </button>
+
+          <button
+            className="border border-black/40 px-8 py-1 rounded-full bg-amber-300 hover:bg-amber-400 transition"
+            onClick={onNext}
+          >
+            Next
+          </button>
+        </div>
       </div>
     </section>
   );

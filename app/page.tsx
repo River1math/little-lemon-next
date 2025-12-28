@@ -1,11 +1,17 @@
-// app/page.tsx
 import Link from "next/link";
-
+import Image from "next/image"
 export default function HomePage() {
   return (
     <>
       <header className="home-header">
-        <img src="/lemon.png" alt="lemon" className="logo" />
+        <Image
+        src="/lemon.png" 
+        alt="lemon" 
+        className="logo" 
+        width={50}
+        height={50}
+        priority
+        />
       </header>
 
       <main className="flex flex-col items-center bg-amber-100">
