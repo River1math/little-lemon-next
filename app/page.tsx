@@ -1,17 +1,9 @@
 import Link from "next/link";
-import Image from "next/image"
+//import Image from "next/image"
 export default function HomePage() {
   return (
     <>
-      <header className="home-header">
-        <Image
-        src="/lemon.png" 
-        alt="lemon" 
-        className="logo" 
-        width={50}
-        height={50}
-        priority
-        />
+      <header className="home-header h-64 md:h-96 bg-[url('/lemon.png')] bg-no-repeat bg-cover bg-center">
       </header>
 
       <main className="flex flex-col items-center bg-amber-100">
